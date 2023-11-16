@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+{% block cont %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm nhân sự</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    
+</head> 
+<body>
+  <img src="https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63641.jpg?w=2000https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png" width="2000" height="55"  alt="">
+
+                  <form method="POST" action="/themnss">    
+                          <h1 >Thêm nhân sự</h1>
+                          <p>Vui lòng điền theo biểu mẫu</p>
+                        <div class="form-floating">
+                                <input name="Ten" type="text" class="form-control" id="floatingInput" placeholder="Enter Ten" > <br>
+                                <label for="floatingInput">Họ và tên</label>
+                              </div>
+                        <div class="form-floating">
+                                <input name="Cc" class="form-control" id="floatingInput" placeholder="Enter Cc" > <br>
+                                <label for="floatingInput">Căn cước công dân</label>
+                              </div>
+                        <div class="form-floating">
+                                 <input name="Ngaysinh" type="string" class="form-control" id="floatingInput" placeholder="Enter Ngaysinh" > <br>
+                                 <label for="floatingInput">Ngày sinh</label>
+                                </div>
+                        <div class="form-floating">
+                                 <input name="Que" class="form-control" id="floatingInput" placeholder="Enter quequan" > <br>
+                                 <label for="floatingInput">Quê quán</label>
+                                </div>
+                        <div class="form-floating">
+                                 <input name="Sdt" class="form-control" id="floatingInput" placeholder="Enter Sdt" > <br>
+                                 <label for="floatingInput">Số điện thoại</label>
+                                </div>  
+                        <div class="clearfix">
+                            <button class="w-100 btn btn-lg btn-primary" type="submit" class="signupbtn">Thêm thông tin</button>
+                          </div>
+                      </form>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+       
+</body>
+
+</html>
+{% endblock %}

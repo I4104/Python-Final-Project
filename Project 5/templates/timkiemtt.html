@@ -1,0 +1,37 @@
+{% extends "home.html" %}
+{% block cont %}
+{% if results %}
+<img src="https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63641.jpg?w=2000https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png" width="2000" height="55"  alt="">
+
+<body>
+    <a href="/thuctap" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Trở lại</a>
+
+<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Họ và tên</th>
+                <th scope="col">Căn cước công dân</th>
+                <th scope="col">Độ tuổi</th>
+                <th scope="col">Vị trí</th>
+                <th scope="col">Số điện thoại</th>
+              </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% else %}
+    <p>Không tìm thấy kết quả nào.</p>
+{% endif %}
+{% endblock %}

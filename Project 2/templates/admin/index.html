@@ -1,0 +1,96 @@
+{% extends "admin/layouts.html" %}
+
+{% block content %}
+<div class="main-panel">
+	<div class="content">
+		<div class="container-fluid">
+			<h4 class="page-title">Quản lý các bàn ăn</h4>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh sách các bàn hàng</h4>
+						</div>
+						<div class="card-body">
+						    <button class="btn btn-outline-success w-100 mb-3" data-toggle="modal" data-target="#add_ban">Thêm bàn mới</button>
+                            <div class="table-responsive">
+                            	<table class="table table-bordered text-center">
+								    <thead>
+								        <th>Bàn</th>
+								        <th>Tối đa</th>
+								        <th>Trạng thái</th>
+								        <th>Thực đơn</th>
+								        <th>Hành động</th>
+								        <th>Xóa</th>
+								    </thead>
+								    <tbody>
+		                            	{% if ban_an|length > 0: %}
+						                    {%for row in ban_an %}
+						                    <tr>
+							                    <td>Bàn số {{ row[0] }}</td>
+							                    <td>{{ row[1] }} người</td>
+							                    <td>
+							                    	{% if row[2] > 0: %} 
+							                    		<span class="badge badge-danger">Đã đặt</span> 
+							                    	{% else: %}
+							                    	 	<span class="badge badge-success">Còn trống</span> 
+							                    	{% endif %}
+							                    </td>
+							                    <td>
+							                    	{% if row[2] > 0: %} 
+							                    		<a href="/admin/view/{{ row[0] }}" class="btn btn-primary btn-sm btn-round"><i class="fa fa-eye"></i></a>
+							                    	{% else: %}
+							                    	 	<span class="badge badge-success">Còn trống</span> 
+							                    	{% endif %}
+							                    </td>
+							                    <td>
+							                    	{% if row[2] > 0: %} 
+							                    		<a href="/admin/return/{{ row[0] }}" class="btn btn-warning">Đã trả bàn</a>
+							                    	{% else: %}
+							                    	 	<span class="badge badge-success">Còn trống</span> 
+							                    	{% endif %}
+							                    </td>
+							                    <td>
+					                				<a class="btn btn-danger btn-sm btn-round" href="/admin/delete/ban_an/{{ row[0] }}"><i class="fa fa-trash"></i></a>
+					                			</td>       
+					                		</tr>    
+						                    {% endfor %}
+						                {% else %}
+						                    <tr>
+						                    	<td colspan="4">Không có bàn nào!</td>
+						                    </tr>
+						                {% endif %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="add_ban" tabindex="-1" role="dialog" aria-labelledby="add new" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <form action="/admin" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm bàn ăn mới</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            	<div class="form-group">
+            		<label>Số lượng người tối đa</label>
+            		<input type="number" name="soluong" class="form-control" required>
+            	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

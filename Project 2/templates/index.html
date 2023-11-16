@@ -1,0 +1,45 @@
+{% extends "layouts.html" %}
+
+{% block content %}
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center mb-5">
+                    <h2>Danh sách bàn ăn</h2>
+                </div>
+                {% if ban_an|length > 0: %}
+                    {%for row in ban_an %}
+                    <div class="col-6 col-sm-6 col-md-4 col-xl-4 mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="https://inhunter.com/datafiles/setone/1572254667_2019-10-28_16-23-24.png" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Bàn số {{ row[0] }}</h5>
+                                    <p>Tối đa: {{ row[1] }} người</p>
+                                    <p>Trạng thái: {% if row[2] > 0: %} <span class="badge badge-danger">Đã đặt</span> {% else: %} <span class="badge badge-success">Còn trống</span> {% endif %}</p>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                {% if row[2] > 0: %} 
+                                    <div class="text-center"><button class="btn btn-outline-danger mt-auto" href="#" disabled>Hết chỗ</button></div>
+                                {% else: %}
+                                    <div class="text-center"><a class="btn btn-outline-success mt-auto" href="/dat_ban/{{ row[0] }}">Đặt bàn</a></div>
+                                {% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-md-12 text-center mb-5">
+                        <h5>Hiện tại đã hết bàn trống!</h5>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

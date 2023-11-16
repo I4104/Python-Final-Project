@@ -1,0 +1,61 @@
+{% extends "layouts/layouts.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Add New Book</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thêm một cuốn sách mới</h6>
+        </div>
+        <form class="card-body" id="edit">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Tên sản phẩm:</label>
+                    <input class="form-control" type="text" name="name" value="{{ data[1] }}" placeholder="Tên sản phẩm" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Loại sản phẩm:</label>
+                    <select class="form-control" id="type" name="category" required>
+                        <option value="">Chọn một loại...</option>
+                        {%for item in category %}
+                        <option value="{{ item[1] }}">{{ item[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Số lượng:</label>
+                    <input class="form-control" type="number" name="amount" value="{{ data[3] }}"  placeholder="Số lượng hiện có" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Giá sản phẩm:</label>
+                    <input class="form-control" type="number" name="price" value="{{ data[4] }}"  placeholder="Giá sản phẩm" required>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn btn-success w-100">Lưu lại</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock  %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $("#type").val("{{ data[2] }}");
+    $("#edit").on("submit", (e) => {
+        e.preventDefault();
+        $.ajax({
+            url: "/curd/edit/{{ data[0] }}",
+            type: "POST",
+            data: $("#edit").serialize(),
+            success: (data) => {
+                alert(data);
+                window.location.reload();
+            }
+        });   
+    });
+</script>
+{% endblock %}
+
+            

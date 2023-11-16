@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+{% block cont %}
+<img src="https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63641.jpg?w=2000https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png" width="2000" height="55"  alt="">
+
+<div class="container">
+<form action='/update_tt/{{ thuctap[0] }}' method = "POST">
+    <table class="table">
+        <tr>
+            <td>Họ và tên</td>
+            <td><input name = "Ten" value="{{ thuctap[1] }}" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td>Căn cước công dân</td>
+            <td><input  name = "Ten" class="form-control" value="{{ thuctap[2] }}" /></td>
+        </tr>
+        <tr>
+            <td>Độ tuổi</td>
+            <td><input name = "Tuoi" class="form-control" value="{{ thuctap[3] }}" /></td>
+        </tr>
+        <tr>
+            <td>Vị trí</td>
+            <td><input name = "home" class="form-control" value="{{ thuctap[4] }}" /></td>
+        </tr>
+        <tr>
+            <td>Số điện thoại</td>
+            <td><input name = "Sdt" class="form-control" value="{{ thuctap[5] }}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-warning">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</div>
+{% endblock %}
+
+

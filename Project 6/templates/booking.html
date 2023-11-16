@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <section id="form" data-aos="fade-up">
+        <div class="container">
+            <h3 class="form__title">Book Table</h3>
+            <div class="form__wrapper">
+                <form name="booking" method="POST" action="booking">
+                    <div class="form__group">
+                        <label>Name</label>
+                        <input type="text"name="name" required>
+                    </div>
+                    <div class="form__group">
+                        <label>Phone</label>
+                        <input type="text" name="phone" required>
+                    </div>
+                    <div class="form__group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form__group">
+                        <label>Table Type</label>
+                        <select name="type" required>
+                            <option selected disabled>Choose</option>
+                            <option value="small">Small(2 persons)</option>
+                            <option value="medium">Small(4 persons)</option>
+                            <option value="large">large(6 persons)</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label>Guest Number</label>
+                        <input type="number" name="amount" min="1" max="10" required>
+                    </div>
+                    <div class="form__group">
+                        <label>Placement</label>
+                        <select name="placement">
+                            <option selected disabled>Choose</option>
+                            <option value="outdoor">Outdoor</option>
+                            <option value="indoor">Indoor</option>
+                            <option value="rooftop">rooftop</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label>Date</label>
+                        <input type="date" name="date" required>
+                    </div>
+                    <div class="form__group">
+                        <label>Time</label>
+                        <input type="time" name="time" required>
+                    </div>
+                    <div class="form__group form__group__full">
+                        <label>Note</label>
+                        <textarea name="note" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Book Table</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

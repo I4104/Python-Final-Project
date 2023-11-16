@@ -1,0 +1,76 @@
+{% extends "layouts/layouts.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Category</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Quản lý danh mục:</h6>
+        </div>
+        <div class="card-body">
+            <form id="category">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="name" placeholder="Tên danh mục">
+                    <button class="btn btn-success" type="submit">Thêm mới</button>
+                </div>
+            </form>
+            <hr>
+            <div class="table-responsive">
+                <h4 class="text-center">Danh mục</h4>
+                <table class="table">
+                    <tbody class="text-center">
+                        {% if data|length > 0: %}
+                            {%for row in data %}
+                            <tr>
+                                <td>{{ row[1] }}</td>
+                                <td>
+                                    <a class="btn btn-danger" onclick="delete_category({{ row[0] }});">
+                                        <i class="fa fa-trash"></i> Xoá
+                                    </a>    
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td class="text-center" colspan="2">
+                                    Không có dữ liệu...   
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $("#category").on("submit", (e) => {
+        e.preventDefault();
+        $.ajax({
+            url: "/curd/add/category",
+            type: "POST",
+            data: $("#category").serialize(),
+            success: (data) => {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    });
+    function delete_category(id) {
+        $.ajax({
+            url: "/curd/delete/category/" + id,
+            type: "GET",
+            success: (data) => {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    }
+</script>
+{% endblock  %}
+
+            

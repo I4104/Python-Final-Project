@@ -1,0 +1,41 @@
+{% extends "layouts.html" %}
+
+{% block content %}
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-12 text-center mb-5">
+                    <h2>Vui lòng chọn món cho: "Bàn {{ ban_id }}"</h2>
+                    <a href="/" class="btn btn-danger">Quay lại</a>
+                </div>
+                {% if mon_an|length > 0: %}
+                	<form class="col-md-12" action="/dat_ban/{{ ban_id }}" method="POST">
+	                	<table class="table table-bordered text-center">
+	                		<thead>
+	                			<th>Tên món ăn</th>
+	                			<th>Giá tiền / đĩa (VND)</th>
+	                			<th>Số lượng (Đĩa)</th>
+	                		</thead>
+		                    <tbody>
+			                    {%for row in mon_an %}
+			                		<tr>
+			                			<td>{{ row[1] }}</td>
+			                			<td>{{ row[2] }}</td>
+			                			<td><input type="number" name="{{ row[1] }}" placeholder="Số lượng" class="form-control" value="0" min="0" required></td>
+			                		</tr>    
+			                    {% endfor %}
+		                	</tbody>
+		                </table>
+		              	<button type="submit" class="btn btn-success w-100">Đặt bàn!</button>
+	                </form>
+                {% else %}
+                    <div class="col-md-12 text-center mb-5">
+                        <h5>Hiện tại đã hết món ăn!</h5>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,96 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Quản lý</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="#" class="fw-normal">Quản lý đơn hàng</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <div class="d-md-flex mb-3">
+                    <h3 class="box-title mb-0">Danh sách đơn hàng</h3>
+                </div>
+                <div class="table-responsive">
+                    <button class="btn btn-success w-100 mb-3  text-white"  data-bs-toggle="modal" data-bs-target="#add_orders">Thêm đơn hàng mới</button>
+                    <table class="table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">Tên đơn hàng</th>
+                                <th class="border-top-0">Trạng thái</th>
+                                <th class="border-top-0">Sửa/Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if orders|length > 0: %}
+                                {%for row in orders %}
+                                <tr>
+                                    <td>{{ row[0] }}</td>
+                                    <td>{{ row[1] }}</td>
+                                    <td>
+                                        {% if row[2] == 1 %}
+                                            <span class="badge me-2 badge-pill bg-success">Đã thanh toán</span>
+                                        {% else %}
+                                            <span class="badge me-2 badge-pill bg-danger">Chưa thanh toán</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm btn-circle" href="/view/{{ row[0] }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-circle" href="/delete/orders/{{ row[0] }}"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center">Chưa có đơn hàng nào</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add_orders" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm đơn hàng mới</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="add/orders" method="POST">
+                    <div class="form-group">
+                        <label>Tên đơn hàng</label>
+                        <input class="form-control" name="name" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select class="form-control" name="status" required>
+                            <option>Chọn một trạng thái</option>
+                            <option value="1">Đã thanh toán</option>
+                            <option value="0">Chưa thanh toán</option>
+                        </select>
+                    </div>  
+                    <button class="btn btn-success" type="submit">Lưu lại</button>       
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

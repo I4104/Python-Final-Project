@@ -1,0 +1,82 @@
+{% extends "layouts/layouts.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Quản lý sách</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách các sản phẩm</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <form class="col-md-12 form-inline mb-3" method="GET" action="search">
+                    <div class="col-md-2">
+                        <label>Tìm kiếm:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="search" class="form-control w-100" placeholder="Tìm kiếm sản phẩm bằng tên...">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <th>Tên sản phẩm</th>
+                        <th>Loại sản phẩm</th>
+                        <th>Số lượng còn lại</th>
+                        <th>Giá mỗi sản phẩm</th>
+                        <th>Thao tác</th>
+                    </thead>
+                    <tbody class="text-center">
+                        {% if product|length > 0: %}
+                            {% for row in product %}
+                            <tr>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td>{{ row[3] }}</td>
+                                <td>{{ row[4] }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="/edit/{{ row[0] }}">
+                                        <i class="fa fa-trash"></i> Sửa
+                                    </a>    
+                                    <a class="btn btn-danger" onclick="delete_product({{ row[0] }});">
+                                        <i class="fa fa-trash"></i> Xoá
+                                    </a>    
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td class="text-center" colspan="5">
+                                    Không có dữ liệu...   
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+
+{% block scripts %}
+<script type="text/javascript">
+    function delete_product(id) {
+        $.ajax({
+            url: "/curd/delete/product/" + id,
+            type: "GET",
+            success: (data) => {
+                alert(data);
+                window.location.reload();
+            }
+        });
+    }
+</script>
+{% endblock  %}
+
+            

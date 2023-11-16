@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Quản lý</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="#" class="fw-normal">Quản lý hàng hóa</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <div class="d-md-flex mb-3">
+                    <h3 class="box-title mb-0">Chỉnh sửa thông tin hàng hóa</h3>
+                </div>
+                <form action="/edit/product/{{ product[0] }}" method="POST">
+                    <div class="form-group">
+                        <label>Tên hàng hóa</label>
+                        <input class="form-control" name="name" type="text" value="{{ product[1] }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Giá hàng hóa</label>
+                        <input class="form-control" name="price" type="number" value="{{ product[2] }}" required>
+                    </div>   
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select class="form-control" name="status" required>
+                            <option>Chọn một trạng thái</option>
+                            <option value="1">Còn hàng</option>
+                            <option value="0">Hết hàng</option>
+                        </select>
+                    </div>  
+                    <button class="btn btn-success" type="submit">Lưu lại</button>       
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

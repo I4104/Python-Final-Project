@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+{% block cont %}
+<div class="container">
+<form action='/update_ns/{{ nhansu[0] }}' method = "POST">
+    <table class="table">
+        <tr>
+            <td>Họ và tên</td>
+            <td><input name = "Ten" value="{{ nhansu[1] }}" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td>Căn cước công dân</td>
+            <td><input  name = "Cc" class="form-control" value="{{ nhansu[2] }}" /></td>
+        </tr>
+        <tr>
+            <td>Ngày sinh</td>
+            <td><input type = "string" name = "Ngaysinh" class="form-control" value="{{ nhansu[3] }}" /></td>
+        </tr>
+
+        <tr>
+            <td>Ngành</td>
+            <td><input name = "Nganh" class="form-control" value="{{ nhansu[4] }}" /></td>
+        </tr>
+
+        <tr>
+            <td>Số điện thoại</td>
+            <td><input name = "Sdt" class="form-control" value="{{ nhansu[5] }}" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-warning">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</div>
+{% endblock %}
+
+

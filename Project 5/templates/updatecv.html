@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+{% block cont %}
+
+<div class="container">
+<form action='/update_cv/{{ congviec[0] }}' method = "POST">
+    <table class="table">
+        <tr>
+            <td>Tên công việc</td>
+            <td><input name = "Ten" value="{{ congviec[1] }}" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td>Số lượng nhân lực</td>
+            <td><input  name = "soluongnhanluc" class="form-control" value="{{ congviec[2] }}" /></td>
+        </tr>
+        <tr>
+            <td>Độ tuổi</td>
+            <td><input name = "Tuoi" class="form-control" value="{{ congviec[3] }}" /></td>
+        </tr>
+        <tr>
+            <td>Mức lương</td>
+            <td><input name = "mucluong" class="form-control" value="{{ congviec[4] }}" /></td>
+        </tr>
+        <tr>
+            <td>Thời gian làm việc</td>
+            <td><input name = "thoigian" class="form-control" value="{{ congviec[5] }}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-warning">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</div>
+{% endblock %}
+
+
